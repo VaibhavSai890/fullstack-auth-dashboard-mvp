@@ -11,19 +11,18 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProfileAndTasks = async () => {
+    const fetchData = async () => {
       try {
         const profileRes = await api.get("/auth/profile");
         setProfile(profileRes.data);
 
-        const taskRes = await api.get("/tasks");
-        setTasks(taskRes.data);
-      } catch (error) {
+        const tasksRes = await api.get("/tasks");
+        setTasks(tasksRes.data);
+      } catch {
         alert("Failed to load dashboard data");
       }
     };
-
-    fetchProfileAndTasks();
+    fetchData();
   }, []);
 
   const logout = () => {
@@ -36,42 +35,39 @@ const Dashboard = () => {
   );
 
   return (
-    <div style={{ padding: "20px" }}>
-      <button onClick={logout} style={{ float: "right" }}>
-        Logout
-      </button>
-
+    <div className="dashboard-container">
       {profile && (
-        <div>
-          <h2>Welcome, {profile.name}</h2>
-          <p>{profile.email}</p>
+        <div className="dashboard-header">
+          <div className="user-info">
+            <h2>Hello, {profile.name} 👋</h2>
+            <p>{profile.email}</p>
+          </div>
+          <button onClick={logout} className="btn-logout">
+            Sign Out
+          </button>
         </div>
       )}
 
-      <hr />
+      <div className="content-card">
+        <input
+          className="search-bar"
+          placeholder="🔍  Search your tasks..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-      <input
-        type="text"
-        placeholder="Search tasks..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+        <TaskForm onTaskAdded={(task) => setTasks([...tasks, task])} />
 
-      <TaskForm onTaskAdded={(task) => setTasks([...tasks, task])} />
-
-      <TaskList
-        tasks={filteredTasks}
-        onTaskUpdated={(updatedTask) =>
-          setTasks(
-            tasks.map((t) =>
-              t._id === updatedTask._id ? updatedTask : t
-            )
-          )
-        }
-        onTaskDeleted={(id) =>
-          setTasks(tasks.filter((t) => t._id !== id))
-        }
-      />
+        <h3 style={{ marginBottom: '1rem', color: '#334155' }}>Your Tasks</h3>
+        
+        <TaskList
+          tasks={filteredTasks}
+          onTaskUpdated={(updatedTask) =>
+            setTasks(tasks.map((t) => (t._id === updatedTask._id ? updatedTask : t)))
+          }
+          onTaskDeleted={(id) => setTasks(tasks.filter((t) => t._id !== id))}
+        />
+      </div>
     </div>
   );
 };

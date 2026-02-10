@@ -13,19 +13,42 @@ const Login = () => {
       const res = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
-    } catch {
-      alert("Invalid credentials");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login failed");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button type="submit">Login</button>
-      <p>New user? <Link to="/register">Register</Link></p>
-    </form>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Welcome Back</h2>
+        <p className="auth-subtitle">Sign in to continue to your dashboard</p>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            className="input-field"
+            placeholder="Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            className="input-field"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button className="btn-primary">Sign In</button>
+        </form>
+
+        <p className="auth-footer">
+          New user?{" "}
+          <Link to="/register" className="link">
+            Create an account
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 };
 

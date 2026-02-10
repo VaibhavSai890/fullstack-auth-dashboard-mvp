@@ -13,20 +13,50 @@ const Register = () => {
     try {
       await api.post("/auth/register", { name, email, password });
       navigate("/login");
-    } catch {
-      alert("Registration failed");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      <input placeholder="Name" onChange={(e) => setName(e.target.value)} />
-      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button type="submit">Register</button>
-      <p>Already have an account? <Link to="/login">Login</Link></p>
-    </form>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2 className="auth-title">Get Started</h2>
+        <p className="auth-subtitle">Create your account today</p>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            className="input-field"
+            placeholder="Full Name"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            className="input-field"
+            placeholder="Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            className="input-field"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button className="btn-primary" style={{ backgroundColor: '#10b981' }}>
+            Register
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          Already have an account?{" "}
+          <Link to="/login" className="link">
+            Log in
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 };
 

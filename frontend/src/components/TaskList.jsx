@@ -21,19 +21,27 @@ const TaskList = ({ tasks, onTaskUpdated, onTaskDeleted }) => {
     }
   };
 
+  if (tasks.length === 0) {
+    return <div style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>No tasks found. Time to relax!</div>;
+  }
+
   return (
-    <ul>
+    <ul className="task-list">
       {tasks.map((task) => (
-        <li key={task._id}>
-          <span
-            style={{
-              textDecoration: task.completed ? "line-through" : "none",
-            }}
-            onClick={() => toggleComplete(task)}
-          >
-            {task.title}
-          </span>
-          <button onClick={() => deleteTask(task._id)}>X</button>
+        <li
+          key={task._id}
+          className={`task-item ${task.completed ? "completed" : ""}`}
+        >
+          <div className="task-content" onClick={() => toggleComplete(task)}>
+            <div className="checkbox">
+              {task.completed && <span>✓</span>}
+            </div>
+            <span className="task-text">{task.title}</span>
+          </div>
+
+          <button onClick={() => deleteTask(task._id)} className="btn-delete" title="Delete">
+            ✕
+          </button>
         </li>
       ))}
     </ul>

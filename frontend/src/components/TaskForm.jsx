@@ -12,19 +12,22 @@ const TaskForm = ({ onTaskAdded }) => {
       const res = await api.post("/tasks", { title });
       onTaskAdded(res.data);
       setTitle("");
-    } catch (error) {
+    } catch {
       alert("Failed to create task");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="task-form">
       <input
-        placeholder="New task"
+        className="task-input"
+        placeholder="What needs to be done?"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button type="submit">Add</button>
+      <button className="btn-add">
+        Add
+      </button>
     </form>
   );
 };
