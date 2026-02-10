@@ -19,6 +19,10 @@ A full-stack web application with JWT authentication, a protected dashboard, and
 ![Search Screen](./screenshots/Search.jpg)
 
 
+### Demo Video
+
+https://github.com/user-attachments/assets/5233c666-5a10-44af-aa0f-d4a734f99ab6
+
 ## Features
 
 - User authentication with JWT
@@ -113,9 +117,7 @@ JWT_SECRET=your_secret_key
 - Introduce role-based access control
 - Containerize with Docker for deployment
 
-### Demo Video
 
-https://github.com/user-attachments/assets/5233c666-5a10-44af-aa0f-d4a734f99ab6
 
 
 ## License
