@@ -4,7 +4,7 @@ A full-stack web application with JWT authentication, a protected dashboard, and
 
 ## Preview
 
-![Login Screen](./screenshots/login.png)
+![Login Screen](./screenshots/Login.jpg)
 ![Dashboard](./screenshots/dashboard.png)
 
 
