@@ -4,8 +4,8 @@ A full-stack web application with JWT authentication, a protected dashboard, and
 
 ## Preview
 
-![Login Screen](./screenshots/login.png)
-![Dashboard](./screenshots/dashboard.png)
+![Login Screen](./screenshots/https://github.com/VaibhavSai890/fullstack-auth-dashboard-mvp/blob/main/screenshots/Screenshot%202026-02-10%20141307.jpg)
+![Dashboard](./screenshots/https://github.com/VaibhavSai890/fullstack-auth-dashboard-mvp/blob/main/screenshots/Screenshot%202026-02-10%20141326.jpg)
 
 ## Features
 
